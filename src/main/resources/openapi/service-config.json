@@ -1,0 +1,12 @@
+{
+  "apiPackage": "com.nationstarmtg.apis.mfa.service.api",
+  "modelPackage": "com.nationstarmtg.apis.mfa.service.api.model",
+  "dateLibrary": "java8",
+  "interfaceOnly": true,
+  "serializableModel": true,
+  "useBeanValidation": true,
+  "java8": true,
+  "async": true,
+  "useOptional": false,
+  "swaggerDocketConfig": false
+}

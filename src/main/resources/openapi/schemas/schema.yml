@@ -1,0 +1,74 @@
+definitions:
+  SendOTPRequest:
+    type: object
+    properties:
+      mobile_number:
+        type: string
+        minLength: 10
+      customer_first_name:
+        type: string
+        minLength: 2
+  VerifyOTPRequest:
+    type: object
+    properties:
+      mobile_number:
+        type: string
+        minLength: 10
+      otp:
+        type: string
+        minLength: 6
+  SendSMSRequest:
+    type: object
+    properties:
+      customer_first_name:
+        type: string
+        minLength: 2
+      mobile_number:
+        type: string
+        minLength: 10
+      enrollment_link:
+        type: string
+      resource_type:
+        type: string
+        required: true
+        enum: [ paperless_enroll, ipq_statement, stmt_fulfill, rapid_reg ]
+  VerifyOTPResponse:
+    type: object
+    properties:
+      created:
+        type: string
+      expires:
+        type: string
+      otp:
+        type: string
+        minLength: 6
+      attempts:
+        type: string
+      message:
+        type: string
+  Error:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+
+parameters:
+  applicationId:
+    name: applicationId
+    required: true
+    type: string
+    in: header
+  X-IBM-Client-Id:
+    name: X-IBM-Client-Id
+    required: true
+    type: string
+    in: header
+  brand-name:
+    name: brand-name
+    required: true
+    type: string
+    maxLength: 3
+    minLength: 3
+    in: header

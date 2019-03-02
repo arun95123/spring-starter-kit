@@ -10,19 +10,62 @@ buildscript {
 	}
 }
 
+ext {
+	openApiFileName = "${projectDir}/src/main/resources/openapi/service.yml"
+	openApiOutputDirName = "${project.buildDir}/openapi-generator"
+}
+
+configurations {
+	openApiGenerator
+}
+
+task openApiGenerator(type: JavaExec) {
+	classpath = configurations.openApiGenerator
+	main = 'org.openapitools.codegen.OpenAPIGenerator'
+	args = [ 'generate', '--generator-name', 'spring',
+			 '--input-spec', openApiFileName,
+			 '--config', "${projectDir}/src/main/resources/openapi/service-config.json",
+			 '--output', openApiOutputDirName
+	]
+}
+//
+//sourceSets {
+//	main {
+//		java {
+//			srcDir "${openApiOutputDirName}/src/main/java"
+//		}
+//		resources {
+//			srcDir "${openApiOutputDirName}/src/main/resources"
+//		}
+//	}
+//}
+
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
 
 group = 'com.qdex'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+compileJava.dependsOn openApiGenerator
+
+
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+	openApiGenerator "org.openapitools:openapi-generator-cli:3.2.3"
+	implementation "io.swagger:swagger-annotations:1.5.20"
+	implementation "javax.servlet:javax.servlet-api"
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation "org.projectlombok:lombok:1.18.2"
+	implementation "io.springfox:springfox-swagger-ui:3.0.0-SNAPSHOT"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
