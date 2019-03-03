@@ -61,11 +61,12 @@ repositories {
 }
 
 dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web")
 	openApiGenerator "org.openapitools:openapi-generator-cli:3.2.3"
 	implementation "io.swagger:swagger-annotations:1.5.20"
 	implementation "javax.servlet:javax.servlet-api"
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation "org.projectlombok:lombok:1.18.2"
-	implementation "io.springfox:springfox-swagger-ui:3.0.0-SNAPSHOT"
+//	implementation "io.springfox:springfox-swagger-ui:3.0.0-SNAPSHOT"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
