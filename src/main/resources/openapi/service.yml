@@ -3,58 +3,23 @@ swagger: "2.0"
 info:
   description: No description
   version: 1.0.0
-  title: Openmarket Multi-factor Authentication
-  contact:
-    name: Mr. Cooper
-    url: https://www.mrcooper.com
-    email: noreply@mrcooper.com
-  x-ibm-name: Openmarket-MFA
-tags: []
-securityDefinitions:
-  API Key:
-    type: apiKey
-    name: X-IBM-Client-Id
-    in: header
-    description: ""
-security:
-- API Key: []
-x-ibm-configuration:
-  enforced: true
-  phase: realized
-  testable: true
-x-ibm-endpoints:
-- endpointUrl: https://api.mrcooper.com/nsm/prod
-  type:
-  - production
+  title: Reflection
 paths:
-  /sendOTP:
-    post:
-      tags: [TPservice]
-      summary: Send OTP to customer mobile number
+  /methods:
+    get:
+      summary: Gets the methods defined for every control type
       description: ""
-      operationId: "sendOTP"
       consumes:
       - "application/json"
       produces:
       - "application/json"
-      parameters:
-      - $ref: './schemas/schema.yml#/parameters/applicationId'
-      - $ref: './schemas/schema.yml#/parameters/brand-name'
-      - name: SendOTPRequest
-        required: true
-        in: body
-        description: JSON with customer mobile and firstname
-        schema:
-          $ref: './schemas/schema.yml#/definitions/SendOTPRequest'
       responses:
         202:
-          description: Status 202
-        400:
-          description: Status 400
+          description: Status 200
           schema:
-            $ref: './schemas/schema.yml#/definitions/Error'
-        401:
-          description: Status 401
+            $ref: './schemas/schema.yml#/definitions/Methods'
+        404:
+          description: Status 404
           schema:
             $ref: './schemas/schema.yml#/definitions/Error'
         500:
@@ -62,85 +27,3 @@ paths:
           schema:
             $ref: './schemas/schema.yml#/definitions/Error'
       deprecated: false
-      security:
-      - API Key: []
-  /verifyOTP:
-    post:
-      tags: [TPservice]
-      summary: Verify the OTP received with openmarket
-      description: ""
-      operationId: "verifyOTP"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - $ref: './schemas/schema.yml#/parameters/applicationId'
-      - $ref: './schemas/schema.yml#/parameters/brand-name'
-      - name: VerifyOTPRequest
-        required: true
-        in: body
-        description: JSON with customer mobile and otp
-        schema:
-          $ref: './schemas/schema.yml#/definitions/VerifyOTPRequest'
-      responses:
-        202:
-          description: Status 202
-          schema:
-            $ref: './schemas/schema.yml#/definitions/VerifyOTPResponse'
-        401:
-          description: Status 401
-          schema:
-            $ref: './schemas/schema.yml#/definitions/Error'
-        406:
-          description: Status 406
-          schema:
-            $ref: './schemas/schema.yml#/definitions/VerifyOTPResponse'
-        429:
-          description: Status 429
-          schema:
-            $ref: './schemas/schema.yml#/definitions/VerifyOTPResponse'
-        500:
-          description: Status 500
-          schema:
-            $ref: './schemas/schema.yml#/definitions/Error'
-      deprecated: false
-      security:
-      - API Key: []
-  /sendSMS:
-    post:
-      tags: [TPservice]
-      summary: Send SMS based on template
-      description: ""
-      operationId: "sendSMS"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - $ref: './schemas/schema.yml#/parameters/applicationId'
-      - $ref: './schemas/schema.yml#/parameters/brand-name'
-      - name: SendSMSRequest
-        required: true
-        in: body
-        description: JSON with customer mobile and otp
-        schema:
-          $ref: './schemas/schema.yml#/definitions/SendSMSRequest'
-      responses:
-        202:
-          description: Status 202
-        400:
-          description: Status 400
-          schema:
-            $ref: './schemas/schema.yml#/definitions/Error'
-        401:
-          description: Status 401
-          schema:
-            $ref: './schemas/schema.yml#/definitions/Error'
-        500:
-          description: Status 500
-          schema:
-            $ref: './schemas/schema.yml#/definitions/Error'
-      deprecated: false
-      security:
-      - API Key: []

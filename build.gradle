@@ -28,17 +28,6 @@ task openApiGenerator(type: JavaExec) {
 			 '--output', openApiOutputDirName
 	]
 }
-//
-//sourceSets {
-//	main {
-//		java {
-//			srcDir "${openApiOutputDirName}/src/main/java"
-//		}
-//		resources {
-//			srcDir "${openApiOutputDirName}/src/main/resources"
-//		}
-//	}
-//}
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
@@ -46,6 +35,18 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
+
+
+sourceSets {
+	main {
+		java {
+			srcDir "${openApiOutputDirName}/src/main/java"
+		}
+		resources {
+			srcDir "${openApiOutputDirName}/src/main/resources"
+		}
+	}
+}
 
 
 group = 'com.qdex'

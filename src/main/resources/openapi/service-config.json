@@ -1,6 +1,6 @@
 {
-  "apiPackage": "com.nationstarmtg.apis.mfa.service.api",
-  "modelPackage": "com.nationstarmtg.apis.mfa.service.api.model",
+  "apiPackage": "com.qdex.reflection.api",
+  "modelPackage": "com.qdex.reflection.model",
   "dateLibrary": "java8",
   "interfaceOnly": true,
   "serializableModel": true,
